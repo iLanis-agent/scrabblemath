@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrabble Math - app</title>
+<style>
+  :root { --accent:#7a4a21; --ink:#2a211a; --paper:#faf7f2; --soft:#f1e8dc; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin:1rem 0 1.4rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #d4c3ae; border-radius:6px; background:#fff; color:var(--ink); }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #d4c3ae; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; font-style:normal; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#6e5f50; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Scrabble Math</h1>
+  <div class="boundary">
+    <strong>Boundary: rules arithmetic only</strong>
+    The game's published scoring rules, run exactly. This page never judges whether a word is legal or a play is smart - the dictionary and the table decide those.
+  </div>
+
+  <div class="panel">
+    <h2>The word truth</h2>
+    <p class="note">One word, one optional letter premium, one word premium.</p>
+    <label for="w-word">Word</label>
+    <input id="w-word" type="text" maxlength="15" value="QUIZ">
+    <label for="w-pos">Letter position with the premium (0 for none)</label>
+    <input id="w-pos" type="number" min="0" step="1" value="4">
+    <label for="w-lmult">Letter premium (1, 2, or 3)</label>
+    <input id="w-lmult" type="number" min="1" max="3" step="1" value="2">
+    <label for="w-wmult">Word premium (1, 2, or 3)</label>
+    <input id="w-wmult" type="number" min="1" max="3" step="1" value="3">
+    <div class="out" id="w-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The bingo truth</h2>
+    <p class="note">All 7 tiles at once is worth 50 on top of the tiles.</p>
+    <label for="b-word">Seven-letter word</label>
+    <input id="b-word" type="text" maxlength="7" value="JAZZILY">
+    <div class="out" id="b-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The bag truth</h2>
+    <p class="note">What the next tile probably is, from counts you tracked.</p>
+    <label for="g-letter">Letter you are waiting on</label>
+    <input id="g-letter" type="text" maxlength="1" value="E">
+    <label for="g-copies">Copies still unseen</label>
+    <input id="g-copies" type="number" min="0" step="1" value="3">
+    <label for="g-tiles">Tiles left in the bag</label>
+    <input id="g-tiles" type="number" min="1" step="1" value="40">
+    <div class="out" id="g-out"></div>
+  </div>
+
+  <footer>Scrabble Math is exact arithmetic over the game's published scoring rules. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const txt = (id) => document.getElementById(id).value;
+  const num = (id) => Number(document.getElementById(id).value);
+  function show(out, fn) {
+    try {
+      const text = fn();
+      out.textContent = text;
+      out.classList.remove("err");
+    } catch (e) {
+      out.textContent = e.message;
+      out.classList.add("err");
+    }
+  }
+  const wOut = document.getElementById("w-out");
+  const bOut = document.getElementById("b-out");
+  const gOut = document.getElementById("g-out");
+  function recalc() {
+    show(wOut, () => wordTruth(txt("w-word"), num("w-pos"), num("w-lmult"), num("w-wmult")));
+    show(bOut, () => bingoTruth(txt("b-word")));
+    show(gOut, () => bagTruth(txt("g-letter"), num("g-copies"), num("g-tiles")));
+  }
+  document.querySelectorAll("input").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
