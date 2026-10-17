@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrabble Math - scrabble scoring honesty</title>
+<style>
+  :root { --accent:#7a4a21; --ink:#2a211a; --paper:#faf7f2; --soft:#f1e8dc; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2.5rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:2.2rem; letter-spacing:.5px; color:var(--accent); }
+  p.lede { font-size:1.12rem; margin:.9rem 0 1.6rem; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.6rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  section { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1.1rem 1.2rem; margin-bottom:1.2rem; }
+  h2 { font-size:1.18rem; margin-bottom:.5rem; }
+  section p { font-size:.98rem; }
+  a.btn { display:inline-block; margin-top:1.4rem; background:var(--accent); color:#fff; text-decoration:none; padding:.8rem 1.6rem; border-radius:999px; font-size:1.05rem; }
+  footer { margin-top:2.2rem; font-size:.85rem; color:#6e5f50; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Scrabble Math</h1>
+  <p class="lede">The bingo bonus outscores most words.</p>
+  <div class="boundary">
+    <strong>Boundary: rules arithmetic only</strong>
+    Letter values, premium squares, and the bingo bonus are the game's published scoring rules, run exactly. Scrabble Math never judges whether a word is legal or a play is smart - the dictionary and the table decide those.
+  </div>
+  <section>
+    <h2>The word truth</h2>
+    <p>QUIZ with the Z doubled and the whole word tripled scores 96. The tiles only make 32 - the premium squares are worth more than the letters.</p>
+  </section>
+  <section>
+    <h2>The bingo truth</h2>
+    <p>JAZZILY is 35 on the tiles, plus 50 for playing all 7 at once. The bonus everyone forgets is worth more than most racks.</p>
+  </section>
+  <section>
+    <h2>The bag truth</h2>
+    <p>With 40 tiles left and 3 E's unseen, the next tile is an E 7.5% of the time. Count the board before you wait on a letter.</p>
+  </section>
+  <a class="btn" href="app.html">Run your numbers</a>
+  <footer>Scrabble Math is exact arithmetic over the game's published scoring rules - tiles, premiums, and the bag, nothing more.</footer>
+</main>
+</body>
+</html>
