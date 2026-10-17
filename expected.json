@@ -1,0 +1,119 @@
+[
+  {
+    "fn": "wordTruth",
+    "args": [
+      "QUIZ",
+      4,
+      2,
+      3
+    ],
+    "expected": "QUIZ scores 96 - 32 on the tiles with the Z doubled, times 3 for the triple word."
+  },
+  {
+    "fn": "wordTruth",
+    "args": [
+      "QUIZ",
+      0,
+      1,
+      1
+    ],
+    "expected": "QUIZ scores 22 - plain squares, just the tiles."
+  },
+  {
+    "fn": "wordTruth",
+    "args": [
+      "hello",
+      2,
+      3,
+      1
+    ],
+    "expected": "HELLO scores 10 - the tiles with the E tripled, no word premium."
+  },
+  {
+    "fn": "wordTruth",
+    "args": [
+      "ZOO",
+      1,
+      2,
+      2
+    ],
+    "expected": "ZOO scores 44 - 22 on the tiles with the Z doubled, times 2 for the double word."
+  },
+  {
+    "fn": "wordTruth",
+    "args": [
+      "QU1Z",
+      0,
+      1,
+      1
+    ],
+    "expected": "ERR:letters only"
+  },
+  {
+    "fn": "wordTruth",
+    "args": [
+      "QUIZ",
+      5,
+      2,
+      1
+    ],
+    "expected": "ERR:the letter position must be inside the word"
+  },
+  {
+    "fn": "bingoTruth",
+    "args": [
+      "JAZZILY"
+    ],
+    "expected": "JAZZILY is 35 on the tiles plus 50 for the bingo - 85 before any premium squares, and the bonus outscores the word."
+  },
+  {
+    "fn": "bingoTruth",
+    "args": [
+      "TRAINED"
+    ],
+    "expected": "TRAINED is 8 on the tiles plus 50 for the bingo - 58 before any premium squares, and the bonus outscores the word."
+  },
+  {
+    "fn": "bingoTruth",
+    "args": [
+      "QUIZ"
+    ],
+    "expected": "ERR:a bingo needs all 7 tiles - QUIZ has 4"
+  },
+  {
+    "fn": "bagTruth",
+    "args": [
+      "E",
+      3,
+      40
+    ],
+    "expected": "With 40 tiles left and 3 E's unseen, the next tile is an E 7.5% of the time - count the board before you wait on a letter."
+  },
+  {
+    "fn": "bagTruth",
+    "args": [
+      "Z",
+      1,
+      50
+    ],
+    "expected": "With 50 tiles left and 1 Z unseen, the next tile is a Z 2.0% of the time - count the board before you wait on a letter."
+  },
+  {
+    "fn": "bagTruth",
+    "args": [
+      "E",
+      0,
+      40
+    ],
+    "expected": "There are no E's left in the bag - stop waiting on it."
+  },
+  {
+    "fn": "bagTruth",
+    "args": [
+      "J",
+      2,
+      30
+    ],
+    "expected": "ERR:the bag only ever holds 1 J tile"
+  }
+]
